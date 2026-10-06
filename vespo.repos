@@ -1,0 +1,41 @@
+# Third-party and team repositories for the ros2_px4_ws workspace.
+#
+# Fresh machine:   cd <ws> && vcs import src < vespo.repos
+# Update pins:     vcs export --exact src > vespo.repos   (then trim to this list)
+# Check status:    vcs status src
+#
+# Commits are pinned so every team member builds the exact same code.
+# px4_msgs MUST match the PX4-Autopilot checkout (see px4.commit in vespo.toml);
+# bump both together.
+#
+# PX4-Autopilot is intentionally NOT listed: it lives outside src/ because it
+# ships its own package.xml and colcon would try to build it.
+
+repositories:
+  px4_msgs:
+    type: git
+    url: https://github.com/PX4/px4_msgs.git
+    version: 14435c7d5a00906970593d42412975d76cdc328f  # generated from PX4 c74272f6ac, ancestor of the pinned PX4 commit
+
+  px4_ros_com:
+    type: git
+    url: https://github.com/PX4/px4_ros_com.git
+    version: 86e9aeb20e55a4673fa8a9f1c29ea06a6c5ad1af  # main
+
+  Micro-XRCE-DDS-Agent:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+    version: v2.4.2
+
+  # Official C++ API for custom PX4 flight modes and mode executors.
+  # Built and checked against the pinned px4_msgs; bump it together with
+  # PX4/px4_msgs. Its example_* packages are skipped by `vespo build`.
+  px4-ros2-interface-lib:
+    type: git
+    url: https://github.com/Auterion/px4-ros2-interface-lib.git
+    version: ac2e8aeecb22de8efb29738b173e1ade5d54432b  # main
+
+  ros2units:
+    type: git
+    url: https://github.com/Imcab/ros2units.git
+    version: 29dd214d6fc223dc0031539ae5df2c970a8a5fbf  # main

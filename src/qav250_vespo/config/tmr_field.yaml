@@ -1,0 +1,37 @@
+# Misión TMR en tmr_field, en coordenadas del CAMPO (las de Gazebo):
+#   x = Este, y = Norte, alt = altura sobre el piso, en metros.
+# FieldFrame las convierte a NED de PX4 usando spawn_x / spawn_y.
+#
+# Gates (hueco cuadrado, se cruzan en dirección norte/sur, 5 por túnel de y=3.0 a y=5.0):
+#   grande   x = 2.1   hueco 1.46 m   centro a 1.25 m
+#   mediano  x = 3.6   hueco 0.96 m   centro a 1.50 m
+#   chico    x = 4.7   hueco 0.46 m   centro a 1.75 m   (QAV250 mide 0.32 m con hélices)
+# Las gates miden 2.02 m de alto; los postes 2.7 m; las paredes 4 m.
+
+tmr_mission:
+  ros__parameters:
+    # Dónde arranca el dron en el campo. Debe coincidir con
+    # environment_description/worlds/tmr_field/spawn.yaml
+    spawn_x: 0.7
+    spawn_y: 4.0
+
+    takeoff_altitude: 1.25   # [m] el despegue lo hace PX4 (executor), antes de la misión
+    tolerance: 0.10          # [m] qué tan cerca cuenta como "llegué"
+    max_speed: 1.0           # [m/s] velocidad horizontal máxima en la misión
+
+    # [x, y, alt] por waypoint, aplanado (ROS 2 no admite listas de listas).
+    waypoints: [
+      0.7, 2.3, 1.25,    # 0  bajar por la franja free_path
+      2.1, 2.3, 1.25,    # 1  entrada túnel grande
+      2.1, 5.7, 1.25,    # 2  salida túnel grande
+      3.6, 5.7, 1.50,    # 3  entrada túnel mediano (se cruza hacia el sur)
+      3.6, 2.3, 1.50,    # 4  salida túnel mediano
+      4.7, 2.3, 1.75,    # 5  entrada túnel chico
+      4.7, 5.7, 1.75,    # 6  salida túnel chico
+      4.7, 5.7, 2.50,    # 7  subir por encima de las gates
+      0.7, 4.0, 2.50,    # 8  volver sobre el punto de despegue (luego el executor aterriza)
+    ]
+
+    # Segundos de espera al llegar a cada waypoint (uno por waypoint, 0 = seguir).
+    # Esperar en las entradas deja que el dron se estabilice antes de cruzar.
+    hold_s: [0.0, 1.0, 0.0, 1.0, 0.0, 1.5, 0.0, 0.0, 0.0]

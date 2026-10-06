@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vespo_sensors</name>
+  <version>0.1.0</version>
+  <description>
+    Nodes that read the flight controller sensors published by PX4 over
+    uXRCE-DDS (gyroscope, accelerometer, attitude) and expose or print them.
+  </description>
+  <maintainer email="cabreratrejoimadjared@gmail.com">Imad Jared Cabrera Trejo</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>px4_msgs</depend>
+  <depend>ros2units</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

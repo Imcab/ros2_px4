@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>qav250_vespo</name>
+  <version>0.1.0</version>
+  <description>
+    Autonomous missions for the VespoUAV QAV250: a command-based framework
+    (commands, sequences) running inside an official PX4 external flight mode
+    (px4-ros2-interface-lib), plus the TMR field mission.
+  </description>
+  <maintainer email="cabreratrejoimadjared@gmail.com">Imad Jared Cabrera Trejo</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>px4_msgs</depend>
+  <depend>px4_ros2_cpp</depend>
+  <depend>eigen</depend>
+  <depend>ros2units</depend>
+
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <test_depend>ament_cmake_gtest</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
